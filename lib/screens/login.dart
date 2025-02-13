@@ -151,9 +151,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     onPressed: _googleSignIn,
-                    icon: const FaIcon(
-                      FontAwesomeIcons.google,
-                      color: Colors.red,
+                    icon: Image.asset(
+                      'assets/google.png',
+                      height: 24, // Adjust size as needed
+                      width: 24,
                     ),
                     label: const Text(
                       'Continue with Google',
