@@ -94,16 +94,18 @@ class _LoginScreenState extends State<LoginScreen> {
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-      if (permission != LocationPermission.whileInUse &&
-          permission != LocationPermission.always) {
-        dev.log("Location permission denied.");
+      if (permission == LocationPermission.deniedForever) {
+        dev.log("Location permission is permanently denied.");
         return;
       }
     }
 
-    // Get the current position
+    // Use the updated way to get the current position
     Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
+      locationSettings: LocationSettings(
+        accuracy: LocationAccuracy.high, // Use the new way
+        distanceFilter: 10, // Optional: updates if moved 10 meters
+      ),
     );
     dev.log("User's location: ${position.latitude}, ${position.longitude}");
   }

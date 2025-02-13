@@ -65,7 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
       }
 
       Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
+        locationSettings: LocationSettings(
+          accuracy: LocationAccuracy.high,
+        ),
       );
 
       List<geocoding.Placemark> placemarks =

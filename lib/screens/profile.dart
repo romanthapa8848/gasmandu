@@ -8,6 +8,10 @@ class ProfilePage extends StatelessWidget {
   // Sign-out function
   Future<void> _signOut(BuildContext context) async {
     await Supabase.instance.client.auth.signOut();
+
+    // Ensure the widget is still mounted before navigating
+    if (!context.mounted) return;
+
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => const LoginScreen()),
     );

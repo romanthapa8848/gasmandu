@@ -56,25 +56,24 @@ class _OrderScreenState extends State<OrderScreen> {
 
   Future<void> _fetchDeliveryAddress() async {
     try {
-      // Check if location services are enabled
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         _addressController.text = 'Location services disabled';
         return;
       }
 
-      // Request permission to access location
       LocationPermission permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
         _addressController.text = 'Location permission denied';
         return;
       }
 
-      // Fetch the current location
       Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
+        locationSettings: const LocationSettings(
+          accuracy: LocationAccuracy.high,
+        ),
+      );
 
-      // Get the address from the coordinates
       List<geocoding.Placemark> placemarks = await geocoding
           .placemarkFromCoordinates(position.latitude, position.longitude);
 
