@@ -1,0 +1,2 @@
+C:/Users/x/GitHub/gasmandu/android/app/.cxx/RelWithDebInfo/6r1c654n/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/x/GitHub/gasmandu/android/app/.cxx/RelWithDebInfo/6r1c654n/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -63,11 +63,10 @@ class PhoneNumberEnterPageState extends State<PhoneNumberEnterPage> {
               const SizedBox(height: 20),
               InternationalPhoneNumberInput(
                 onInputChanged: (PhoneNumber number) {
-                  _phoneController.text = number.phoneNumber ?? '';
+                  // You can leave this empty or update state if needed.
                 },
                 selectorConfig: SelectorConfig(
-                  selectorType: PhoneInputSelectorType
-                      .BOTTOM_SHEET, // Corrected selector type
+                  selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                   leadingPadding: 10,
                 ),
                 initialValue: PhoneNumber(isoCode: 'NP'),
@@ -76,11 +75,11 @@ class PhoneNumberEnterPageState extends State<PhoneNumberEnterPage> {
                   labelText: 'Phone Number',
                   hintText: '9XXXXXXXXX',
                   border: const OutlineInputBorder(),
-                  prefixText: '+977 ',
                 ),
                 validator: _validatePhoneNumber,
-                maxLength: 10, // Limiting phone number to 10 digits
+                maxLength: 10,
                 keyboardType: TextInputType.phone,
+                formatInput: false, // Disable automatic formatting
               ),
               const SizedBox(height: 40),
               ElevatedButton(

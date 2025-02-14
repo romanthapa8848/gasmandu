@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gasmandu/screens/home.dart'; // Ensure the HomeScreen is imported
 
 class SelectBrandPage extends StatelessWidget {
   const SelectBrandPage({super.key});
@@ -26,19 +27,34 @@ class SelectBrandPage extends StatelessWidget {
                 ListTile(
                   title: const Text('Brand 1'),
                   onTap: () {
-                    // Handle selection of Brand 1
+                    // Navigate to HomeScreen when Brand 1 is selected.
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
                   title: const Text('Brand 2'),
                   onTap: () {
-                    // Handle selection of Brand 2
+                    // Navigate to HomeScreen when Brand 2 is selected.
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
                   title: const Text('Brand 3'),
                   onTap: () {
-                    // Handle selection of Brand 3
+                    // Navigate to HomeScreen when Brand 3 is selected.
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
                   },
                 ),
               ],

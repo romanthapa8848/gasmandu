@@ -1,0 +1,2 @@
+C:/Users/x/GitHub/gasmandu/android/app/.cxx/RelWithDebInfo/6r1c654n/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/x/GitHub/gasmandu/android/app/.cxx/RelWithDebInfo/6r1c654n/x86_64/CMakeFiles/rebuild_cache.dir
