@@ -5,6 +5,7 @@ import 'package:gasmandu/screens/home.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart'; // Import geolocator
+import 'phone_number_enter_page.dart'; // Import PhoneNumberEnterPage
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -30,8 +31,9 @@ class _LoginScreenState extends State<LoginScreen> {
       if (event == AuthChangeEvent.signedIn) {
         // After sign-in, request location
         _requestLocation();
+        // Redirect to PhoneNumberEnterPage after login
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => const PhoneNumberEnterPage()),
         );
       }
     });
@@ -153,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: _googleSignIn,
                     icon: Image.asset(
                       'assets/google.png',
-                      height: 24, // Adjust size as needed
+                      height: 24,
                       width: 24,
                     ),
                     label: const Text(
