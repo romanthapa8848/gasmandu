@@ -5,6 +5,7 @@ import 'package:gasmandu/screens/home.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geolocator/geolocator.dart'; // Import geolocator
+import 'package:permission_handler/permission_handler.dart'; // Import permission handler
 import 'phone_number_enter_page.dart'; // Import PhoneNumberEnterPage
 
 class LoginScreen extends StatefulWidget {
@@ -29,8 +30,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
       final event = data.event;
       if (event == AuthChangeEvent.signedIn) {
-        // After sign-in, request location
-        _requestLocation();
+        // After sign-in, request location and notifications
+        _requestPermissions();
         // Redirect to PhoneNumberEnterPage after login
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const PhoneNumberEnterPage()),
@@ -80,10 +81,16 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  // New function to request the user's location
-  Future<void> _requestLocation() async {
+  // New function to request location and notification permissions
+  Future<void> _requestPermissions() async {
     bool serviceEnabled;
     LocationPermission permission;
+
+    // Request notification permission
+    var notificationStatus = await Permission.notification.request();
+    if (notificationStatus.isDenied || notificationStatus.isPermanentlyDenied) {
+      dev.log("Notification permission denied.");
+    }
 
     // Check if location services are enabled
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -92,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    // Check if permission is granted
+    // Check if location permission is granted
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -102,11 +109,11 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     }
 
-    // Use the updated way to get the current position
+    // Get the current position
     Position position = await Geolocator.getCurrentPosition(
       locationSettings: LocationSettings(
-        accuracy: LocationAccuracy.high, // Use the new way
-        distanceFilter: 10, // Optional: updates if moved 10 meters
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 10,
       ),
     );
     dev.log("User's location: ${position.latitude}, ${position.longitude}");
