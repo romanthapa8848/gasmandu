@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart'; // For flag and country code input
 import 'select_brand_page.dart'; // Import SelectBrandPage
 
@@ -18,6 +17,7 @@ class PhoneNumberEnterPageState extends State<PhoneNumberEnterPage> {
     if (value == null || value.isEmpty) {
       return 'Please enter a phone number';
     }
+    // Validate that the phone number is 10 digits long and starts with 9
     if (value.length != 10 || !RegExp(r'^[9][0-9]{9}$').hasMatch(value)) {
       return 'Please enter a valid 10-digit Nepalese phone number starting with 9';
     }
@@ -66,7 +66,8 @@ class PhoneNumberEnterPageState extends State<PhoneNumberEnterPage> {
                   _phoneController.text = number.phoneNumber ?? '';
                 },
                 selectorConfig: SelectorConfig(
-                  selectorType: PhoneInputSelectorType.DIAL_CODE,
+                  selectorType: PhoneInputSelectorType
+                      .BOTTOM_SHEET, // Corrected selector type
                   leadingPadding: 10,
                 ),
                 initialValue: PhoneNumber(isoCode: 'NP'),
@@ -79,9 +80,6 @@ class PhoneNumberEnterPageState extends State<PhoneNumberEnterPage> {
                 ),
                 validator: _validatePhoneNumber,
                 maxLength: 10, // Limiting phone number to 10 digits
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                ],
                 keyboardType: TextInputType.phone,
               ),
               const SizedBox(height: 40),
