@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gasmandu/screens/order.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart' as geocoding;
+import 'package:geolocator/geolocator.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'brands.dart'; // Ensure this file defines BrandsPage
-import 'rates.dart'; // Ensure this file defines RatesPage
 import 'profile.dart'; // Ensure this file defines ProfilePage
+import 'rates.dart'; // Ensure this file defines RatesPage
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -70,8 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
 
-      List<geocoding.Placemark> placemarks =
-          await geocoding.placemarkFromCoordinates(
+      List<geocoding.Placemark> placemarks = await geocoding.placemarkFromCoordinates(
         position.latitude,
         position.longitude,
       );
@@ -185,10 +184,7 @@ class HomePage extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           'Your one-stop app for on-demand gas delivery!',
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: Colors.black54),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black54),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 32),
