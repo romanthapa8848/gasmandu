@@ -1,0 +1,2 @@
+/Users/aadarshkunwar/Documents/StartUp/gasmandu/android/app/.cxx/Debug/69696c2p/x86_64/CMakeFiles/edit_cache.dir
+/Users/aadarshkunwar/Documents/StartUp/gasmandu/android/app/.cxx/Debug/69696c2p/x86_64/CMakeFiles/rebuild_cache.dir
